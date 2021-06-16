@@ -32,23 +32,22 @@ class ForestFire(Model):
         )
         self.env=env
         self.init=False
+        agent_count=0
         # Place a tree in each cell with Prob = density
         for (contents, x, y) in self.grid.coord_iter():
             if self.random.random() < density:
                 # Create a tree
                 new_tree = TreeCell((x, y), self)
                 # Set all trees in the first column on fire.
-                if(np.random.random()<new_tree.flamebility*env):
-                    if(not self.init):
-                        new_tree.condition="On Fire"
-                        self.init=True
                 # if x == 0:
                 #     new_tree.condition = "On Fire"
                 self.grid._place_agent((x, y), new_tree)
                 self.schedule.add(new_tree)
-
+                agent_count+=1
         self.running = True
         self.datacollector.collect(self)
+        init=np.random.randint(agent_count)
+        self.schedule.agents[init].condition="On Fire"
 
     def step(self):
         """

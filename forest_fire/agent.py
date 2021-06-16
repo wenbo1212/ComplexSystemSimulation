@@ -24,7 +24,8 @@ class TreeCell(Agent):
         super().__init__(pos, model)
         self.pos = pos
         self.condition = "Fine"
-        self.flamebility=np.random.random()
+        self.flamebility=np.random.randint(2,50)/100
+        self.neighbor_on_fire=0
 
     def variate_flamebility(self):
         self.flamebility=(self.flamebility+1)*self.flamebility
@@ -36,7 +37,8 @@ class TreeCell(Agent):
         if self.condition == "On Fire":
             for neighbor in self.model.grid.neighbor_iter(self.pos):
                 if neighbor.condition == "Fine":
-                    if(np.random.random()<neighbor.flamebility):
+                    neighbor.neighbor_on_fire+=1
+                    if(np.random.random()<neighbor.flamebility+0.125*neighbor.neighbor_on_fire):
                         neighbor.condition = "On Fire"
             self.condition = "Burned Out"
         self.variate_flamebility()
