@@ -8,3 +8,5 @@ Running the notebook block by block can reproduce the project workflow.
 
 The Agent and Model are also implemented in the folder `forest_fire` for the interactive visualization.
 To enable the visualization, execute `python run.py`
+
+IF encouter any problems, please contact sunwenbo1212@outlook.com, Thank you.
