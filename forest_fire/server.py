@@ -31,9 +31,9 @@ model_params = {
     "width": 100,
     "env": 0.1,
     "density": UserSettableParameter("slider", "Tree density", 0.65, 0.01, 1.0, 0.01),
-    "distr": UserSettableParameter("choice", "flammability distribution", value="constant", choices=["constant", "uniform", "normal", "bimodal"]),
-    "start_cells": UserSettableParameter("checkbox", "starts from border", value=True),
-    "start_stage": UserSettableParameter("checkbox", "starts as initializing", value=True)
+    "distr": UserSettableParameter("choice", "flammability distribution", value="uniform", choices=["constant", "uniform", "normal", "bimodal"]),
+    "start_cells": UserSettableParameter("checkbox", "starts from border", value=False),
+    "start_stage": UserSettableParameter("checkbox", "starts as initializing", value=False)
 }
 server = ModularServer(
     ForestFire, [canvas_element, tree_chart,
