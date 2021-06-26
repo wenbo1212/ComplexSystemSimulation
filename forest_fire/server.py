@@ -29,9 +29,13 @@ pie_chart = PieChartModule(
 model_params = {
     "height": 100,
     "width": 100,
+    "env": 0.1,
     "density": UserSettableParameter("slider", "Tree density", 0.65, 0.01, 1.0, 0.01),
-    "env": UserSettableParameter("slider","environment", 0.1,0.001,0.1,0.001)
+    "distr": UserSettableParameter("choice", "flammability distribution", value="constant", choices=["constant", "uniform", "normal", "bimodal"]),
+    "start_cells": UserSettableParameter("checkbox", "starts from border", value=True),
+    "start_stage": UserSettableParameter("checkbox", "starts as initializing", value=True)
 }
 server = ModularServer(
-    ForestFire, [canvas_element, tree_chart, pie_chart], "Forest Fire", model_params
+    ForestFire, [canvas_element, tree_chart,
+                 pie_chart], "Forest Fire", model_params
 )
